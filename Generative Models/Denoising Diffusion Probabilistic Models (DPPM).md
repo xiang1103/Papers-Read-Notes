@@ -36,6 +36,10 @@ Building on the foundation of a diffusion model to introduce a forward process o
 - How is markov chain used/implemented in this paper? What does it mean chain transition mean?  
 
 - How to sample? 
+    - Given a time t, a noise vector $X_t$, there is closed form formula to sample $X_0$ directly. 
+    - This formula outputs mean, variance after a parametrization trick 
+    - If we start at t=0, we directly compute the mean. Otherwise, we calculate the variance and reparametrize. 
+    - Sampling is done in one shot, we do not sample time step by timestep. 
 
 - Model is conditional/dependent on t, during training we sample a random t, how does it transfer to successful sampling if each t is different?  
  

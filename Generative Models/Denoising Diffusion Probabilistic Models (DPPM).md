@@ -57,7 +57,8 @@ Building on the foundation of a diffusion model to introduce a forward process o
 - Forward: Add noise from $X_0$ to $X_t$, where $X0$ is the original data distribution. At $X_t$ we'll have a random Gaussian noise. 
     - Each time we sample noise from $N(X_t; (\sqrt{ (1-\beta_t)*X_{t-1}}), \beta_t)$ where $0< \beta_{1} < ... < \beta_t <1$ 
 - This forward process adding noise each time can be done in one step summarized by $N(X_t; \sqrt{\alpha_t}*X_0, (1-\alpha_t))$ for $\alpha_t =\prod_{s=1}^{t} (1-\beta_s)$ 
-    - Note that we can do this because $\sqrt{a}*\sqrt{b}=\sqrt{a*b}$
+    - Note that we can do this because $\sqrt{a}*\sqrt{b}=\sqrt{a*b}$ 
+- Since out $\beta_t<1$, multiplication of them together will get smaller, so $\alpha_t$ will eventually go to 0, while $1-\alpha_t$ will become 1. So our final noise is of normal distribution of mean 0 variance 1 
 ### Backward Process: 
 - Backward goes from $X_t$ to $X_0$, instead of predicting what the image at $X_{t-1}$ looks like, the trick is to predict the noise that's being added from $X_{t-1}$ to $X_t$ 
 - Our network will take in the current input at generated time $t$, and predict noise at each step, get rid of the noise, repeat until $t=0$.  
@@ -65,6 +66,11 @@ Building on the foundation of a diffusion model to introduce a forward process o
 - Sample a time step t and generate a noise 
 - Choose a starting image $X_0$ 
 - Use denoising model to predict noise from $X_t$ to $X_0$ 
+### Loss function: 
+- The loss function with KL divergence after derivation turns out to be the difference between noise predicted and noise sampled originally (MSE). That's why we can use it as loss function. 
+### Sampling 
+- Generate a noise and compute the mean at each step, deduct the noise
+- Reparameterize and repeat these steps from t to 1. 
 ### Why better? 
 - Two pass methods compared with just one pass in GAN 
 - The Unet in diffusion process gets the entire timestep $t$ times to denoise and make adjustments 

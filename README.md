@@ -9,6 +9,7 @@ Some of my personal ways for reading papers and taking notes for references. The
     - What is the problem the paper tries to solve? Why does this problem matter? 
     - How does the paper solve this problem? 
     - What are the results of this paper? 
+    - Why does the methods work? 
     - How can we use the result from this paper? 
     - How does this paper connect with other methods you know in the field? 
     - What is a problem/drawback of the method? How can we try to modify the methodology (code/theory to adjust it)? 

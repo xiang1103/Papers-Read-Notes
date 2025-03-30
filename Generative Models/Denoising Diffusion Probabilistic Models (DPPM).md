@@ -4,18 +4,22 @@
 Building on the foundation of a diffusion model to introduce a forward process of adding noise, then a backward process of denoising each step to predict noises added. Then we get a model that's capable of denoising noises and generate a reasonable looking image. 
 ## Questions: 
 - What is denoising diffusion? Why do we need to denoise diffusion? 
-    - Getting rid of noise is the denoising. 
+    - Getting rid of noise is the denoising. We need the denoising because we added noise to the original input in the forward process. 
 - What is the diffusion process? 
     - Add noise to corrupt input then denoise 
 - What is the difference between this method and flow matching and score matching?   
     - This method also involves denoising score matching 
 
 - What problems does this method solve? 
-    - It connects the traditional diffusion models with variational inference. Provides a better loss objective at training diffusion models. 
+    - It connects the traditional diffusion models with variational inference. Provides a better loss objective at training diffusion models.  
+    - How to generate realistic images? 
 - How does the paper solve this problem?   
     - Achieve a simpler training error/objective  
 - How can we use the result from this paper?  Applications 
-    - Can we use this on robot parameters? If 
+    - Can we use this on robot parameters? This works on generating similar images because images are highly similar/structured. if the model learns where the pixels lay, then changing their RGB values/arrangements a little bit, we get similar images that can be recognized by human eyes. But if an action requires very specific parameters, generating a similar but not the same parameter might not work. 
+- Why does this paper work? 
+    - Because we add noise to the original data distribution to get noise as input, and since we sample different time points for training, the model **learns the different noise distribution and how to get back to the original data distribution**.  
+    - Then if we give a random noise (not too much different from the noise distribution) from training, the model returns an output that's close to the original data distribution, but not exactly identical to the original data 
 - How does this paper connect with other methods you know in the field?  
     - Different class of its own compared with GAN, flow matchings 
 
@@ -33,7 +37,9 @@ Building on the foundation of a diffusion model to introduce a forward process o
 
 - How to sample? 
 
-- Model is conditional/dependent on t, during training we sample a random t, how does it transfer to successful sampling if each t is different? 
+- Model is conditional/dependent on t, during training we sample a random t, how does it transfer to successful sampling if each t is different?  
+ 
+- How much different can it generate images from the original? 
   
 ### Impact: 
 - Training diffusion model and achieved good results (based on metrics) at reconstructing images from CIFAR10 dataset compared with other methods like ProgressiveGAN.  

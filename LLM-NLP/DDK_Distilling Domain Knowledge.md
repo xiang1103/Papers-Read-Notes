@@ -1,7 +1,7 @@
 # DDK: Distilling Domain Knowledge for Efficient Large Language Models 
 
 ## Quick Summary 
-Distill the dataset using a discrepancy factor to see what domains have a big performance gap and make the student model train more on those tasks across difference domains. Big improvements from base model but not so much from other methods.  
+Distill the dataset using a discrepancy factor to see what domains have a big performance gap and make the student model train more on those tasks across difference domains. Big improvements from base model but not so much from other KD methods.  
 ## General Questions 
 - What is the problem the paper tries to solve? Why does this problem matter?  
     - Distill domain knowledge more efficiently between teacher and student models 
@@ -55,6 +55,8 @@ Distill the dataset using a discrepancy factor to see what domains have a big pe
 - A smoothing algorithm to stabilize this DDK approach  
 - Uses a general large LLM as teacher and smaller LM for student 
 - Training is done by DeepSeek Code base. Jointly minimize the KL divergence and the ground truth entropy. (Standard KD training loss)
+- Do not tune the prompt given to the LM 
+- No specifics of training mentioned in the paper (see the DeepSeek code base they used)
 
 ### Discrepancy Factor 
 - The domain discrepancy factor is a row vector of size # of domains, defined by $r[i]$. The higher the score is, the more discrepancy in performance.  

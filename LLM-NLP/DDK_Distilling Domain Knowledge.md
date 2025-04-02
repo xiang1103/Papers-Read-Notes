@@ -68,7 +68,7 @@ Distill the dataset using a discrepancy factor to see what domains have a big pe
 - Dataset RedPajama for distillation: 
     - Contains CommonCrawl(web crawled datasets), C4(web crawled), the Stack (source code of 30 programming languages), Wikipedia, Books (books with author and their publication info), ArXiv, StackExchange, OpenWebMath(Math webpages)  
     - These are the domain datasets used during distillation process 
-- Areas for improvement: math, chinese 
+- Areas for improvement: math, Chinese 
 - Prepare 500 samples to use as validation for each domain 
 - Training details such as setting learning rates can be found in the paper 
 - **Evaluation is done by using preexisting benchmark datasets across different domains such as RACE.** 
